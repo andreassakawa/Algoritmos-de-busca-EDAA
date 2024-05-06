@@ -17,12 +17,14 @@ import gc
 
     #csvwriter.writerow(vetor)
 
+# define classe No
 class No:
     def __init__(self, x):
         self.valor = x
         self.esq = None
         self.dir = None
 
+# Função que insere nó na árvore
 def insertNode(no, x):
     if no is None:
         no = No(x)
@@ -34,6 +36,7 @@ def insertNode(no, x):
         no.dir = insertNode(no.dir, x)
     return no
 
+# Função que realiza a busca na árvore
 def searchData(no, x):
     comparacoes = 1
     if no.valor == x:    
@@ -65,7 +68,7 @@ def buscaSequencial(arquivo):
     # nome do arquivo CSV a ser utilizado
     nomearquivo = arquivo
 
-    # código para ler os valores do arquivo CSV e preencher o vetor
+    # código para ler os valores do arquivo CSV e preencher a árvore
     with open(nomearquivo, 'r') as arquivocsv:
         leitor = csv.reader(arquivocsv)
         for linha in leitor:
@@ -78,6 +81,7 @@ def buscaSequencial(arquivo):
 
     # define valor a ser buscado
     #entrada = int(input())
+    #entrada = 12415
 
     # código que salva o tempo inicial
     tempoinicial = time.time()
@@ -86,6 +90,9 @@ def buscaSequencial(arquivo):
 
     # imprime a diferença entre o tempo atual e o inicial
     #print("Tempo busca binária: %s segundos" % (time.time()-tempoinicial))
+
+    # delay (em segundos)
+    time.sleep(0.001)
     tempofinal = time.time() - tempoinicial
 
     #print("Número de comparações: ", resultado)
