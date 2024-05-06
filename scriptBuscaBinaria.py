@@ -65,8 +65,8 @@ def buscaSequencial(arquivo):
     #snapshotmei = tracemalloc.take_snapshot()
 
     # define valor a ser buscado
-    #entrada = int(input())
     entrada = random.choice(vetor)
+    #entrada = 677433
 
     # ordena o vetor
     vetor.sort()
@@ -84,6 +84,9 @@ def buscaSequencial(arquivo):
 
     # imprime a diferença entre o tempo atual e o inicial
     #print("Tempo busca binária: %s segundos" % (time.time()-tempoinicial))
+
+    # delay (em segundos)
+    time.sleep(0.001)
     tempofinal = time.time() - tempoinicial
 
     #print("Número de comparações: ",resultado[1])
@@ -117,7 +120,7 @@ vetortempo = []
 vetorcomparacoes = []
 
 for n in range(100):
-    resultadofinal = buscaSequencial('oitocentos.csv')
+    resultadofinal = buscaSequencial('cem.csv')
     vetortempo.append(resultadofinal[0])
     vetorcomparacoes.append(resultadofinal[1])
     vetormemoria.append(resultadofinal[2])
