@@ -17,11 +17,13 @@ import gc
 
     #csvwriter.writerow(vetor)
 
+# define classe No
 class No:
     def __init__(self, x):
         self.valor = x
         self.prox = None
 
+# define classe Lista e suas funções
 class ListaEnc:
 
     def __init__(self):
@@ -70,9 +72,10 @@ def buscaSequencial(arquivo):
     # nome do arquivo CSV a ser utilizado
     nomearquivo = arquivo
 
+    # cria objeto do tipo Lista
     lista = ListaEnc()
 
-    # código para ler os valores do arquivo CSV e preencher o vetor
+    # código para ler os valores do arquivo CSV e preencher a lista
     with open(nomearquivo, 'r') as arquivocsv:
         leitor = csv.reader(arquivocsv)
         for linha in leitor:
@@ -83,7 +86,6 @@ def buscaSequencial(arquivo):
     #snapshotmei = tracemalloc.take_snapshot()
 
     # define valor a ser buscado
-    #entrada = int(input())
     #entrada = 44942
 
     # código que salva o tempo inicial
@@ -116,6 +118,7 @@ def buscaSequencial(arquivo):
 
     del lista
     gc.collect()
+
     return tempofinal, resultado, mem[1]
 
 # Algoritmo:
