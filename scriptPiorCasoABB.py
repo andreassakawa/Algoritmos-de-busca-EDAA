@@ -1,5 +1,6 @@
 import csv
 
+# define a classe No
 class No:
     def __init__(self, x, h):
         self.valor = x
@@ -7,6 +8,7 @@ class No:
         self.dir = None
         self.altura = h
 
+# define a função de inserir nós com sua altura
 def insertNode(no, x, h):
     if no is None:
         no = No(x,h)
@@ -18,6 +20,7 @@ def insertNode(no, x, h):
         no.dir = insertNode(no.dir, x, h)
     return no
 
+# define a função busca pelo nó com maior altura
 def searchMaxH(no, h):
     maxH = h
     if no:
@@ -28,6 +31,7 @@ def searchMaxH(no, h):
         maxH = max(no.altura, maxHEsq, maxHDir)
     return maxH
 
+# define a função que realiza a busca por nós que possuam a maior altura
 def searchByH(no, h):
     if no:
         if no.altura == h:    
@@ -46,7 +50,7 @@ def searchByH(no, h):
 # nome do arquivo CSV a ser utilizado
 arquivo = 'cem.csv'
 
-# código para ler os valores do arquivo CSV e preencher o vetor
+# código para ler os valores do arquivo CSV e preencher a árvore
 with open(arquivo, 'r') as arquivocsv:
     leitor = csv.reader(arquivocsv)
     for linha in leitor:
