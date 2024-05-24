@@ -3,7 +3,6 @@ import csv
 import time
 import tracemalloc
 import statistics
-import gc
 
 # código utilizado para gerar vetores com número de 1 a n
 #vetor = list(range(1,101,1))
@@ -66,10 +65,12 @@ def buscaSequencial(arquivo):
 
     # define valor a ser buscado
     entrada = random.choice(vetor)
-    #entrada = 677433
+    #entrada = 1000000
 
+    tempoordenacao = time.time()
     # ordena o vetor
     vetor.sort()
+    tempoordenacao = time.time()-tempoordenacao
 
     # marca o tempo inicial
     tempoinicial = time.time()
@@ -95,11 +96,11 @@ def buscaSequencial(arquivo):
 
     #memoriacriacao = snapshotmei.compare_to(snapshotini,'lineno')
     #for stat in memoriacriacao[:3]:
-        #print(stat)
+        #print(stat.size)
 
     #memoriabusca = snapshotfin.compare_to(snapshotmei,'lineno')
     #for stat in memoriabusca[:3]:
-        #print(stat)
+        #print(stat.size)
 
     # mostra a memória
     mem = tracemalloc.get_traced_memory()
@@ -108,22 +109,22 @@ def buscaSequencial(arquivo):
     # encerra o monitoramento
     tracemalloc.stop()
 
-    del vetor
-    gc.collect()
 
-    return tempofinal, resultado[1], mem[1]
+    return tempofinal, resultado[1], mem[1], tempoordenacao
 
 # Algoritmo:
 
 vetormemoria = []
 vetortempo = []
 vetorcomparacoes = []
+vetorordenacao = []
 
 for n in range(100):
-    resultadofinal = buscaSequencial('cem.csv')
+    resultadofinal = buscaSequencial('milhao.csv')
     vetortempo.append(resultadofinal[0])
     vetorcomparacoes.append(resultadofinal[1])
     vetormemoria.append(resultadofinal[2])
+    vetorordenacao.append(resultadofinal[3])
 
 print('Média do tempo: ',statistics.mean(vetortempo))
 print('Desvio padrão do tempo: ',statistics.stdev(vetortempo))
@@ -133,3 +134,6 @@ print('Desvio padrão das comparações: ',statistics.stdev(vetorcomparacoes))
 
 print('Média da memória: ',statistics.mean(vetormemoria))
 print('Desvio padrão da memória: ',statistics.stdev(vetormemoria))
+
+print('Média tempo ordenação: ',statistics.mean(vetorordenacao))
+print('Desvio padrão tempo ordenação: ',statistics.stdev(vetorordenacao))
